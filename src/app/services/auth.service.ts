@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { jwtResponse } from '../models/jwt-response';
 import { stringResponse } from '../models/string-reponse';
 
-const AUTH_API = 'http://localhost:8080/epiMage/auth/';
+const AUTH_API = 'http://https://glacial-eyrie-69094.herokuapp.com/epiMage/auth/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
