@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { stringResponse } from '../models/string-reponse';
 
-const API_URL = 'http://https://glacial-eyrie-69094.herokuapp.com/epiMage/test/';
+const API_URL = 'http://glacial-eyrie-69094.herokuapp.com/epiMage/test/';
 
 @Injectable({
   providedIn: 'root'
