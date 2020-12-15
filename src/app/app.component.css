@@ -1,0 +1,39 @@
+
+:host {
+  font-family: 'Bebas Neue', cursive;
+  background-image: url('../assets/moritz-kindler-mGFHA_0TWnA-unsplash.jpg');
+  background-size: cover;
+}
+
+.logo {
+  top: 5vh;
+  left: 5vw;
+  width: 18vw;
+  font-size: x-large;
+}
+
+.logoYellow {
+  color: #F5DF4D;
+}
+
+.logoWhite {
+  color:azure;
+}
+
+.blurb {
+  color:azure;
+  font-size: x-large;
+  bottom: 10vh;
+  left: 5vw;
+}
+
+.mainButtons {
+  right: 10vw;
+  top: 20vh;
+  height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}

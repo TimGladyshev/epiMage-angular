@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'user', component: UserLandingComponent },
   { path: 'admin', component: AdminLandingComponent },
   { path: 'contributor', component: ContributorComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({

@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { jwtResponse } from '../models/jwt-response';
 import { stringResponse } from '../models/string-reponse';
 
-const AUTH_API = 'http://glacial-eyrie-69094.herokuapp.com/epiMage/auth/';
-
+//const AUTH_API = 'https://glacial-eyrie-69094.herokuapp.com/epiMage/auth/';
+const AUTH_API = 'http://localhost:8080/epiMage/auth/';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -32,10 +32,7 @@ export class AuthService {
     }, httpOptions);
   }
 
-  upgrade(username: string, password: string): Observable<stringResponse> {
-    return this.http.post<stringResponse>(AUTH_API + 'contribute', {
-      username,
-      password
-    }, httpOptions);
+  upgrade(username: string): Observable<stringResponse> {
+    return this.http.post<stringResponse>(`${AUTH_API}${username}/contribute`, httpOptions);
   }
 }

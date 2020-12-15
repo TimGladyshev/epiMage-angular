@@ -1,74 +1,32 @@
 <div class="container">
 
-  <h1><span class="badge badge-secondary">User Landing</span></h1>
+  <h1><span class="badge badge-secondary">{{ content.message }}</span></h1>
 
-  <div class="card card-container">
-    <h3>Log In</h3>
-    <form
-      name="form"
-      (ngSubmit)="f.form.valid && onSubmit()"
-      #f="ngForm"
-      novalidate
-    >
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input
-          type="text"
-          class="form-control"
-          name="username"
-          [(ngModel)]="form.username"
-          required
-          #username="ngModel"
-        />
-        <div
-          class="alert alert-danger"
-          role="alert"
-          *ngIf="username.errors && f.submitted"
-        >
-          Username is required!
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          name="password"
-          [(ngModel)]="form.password"
-          required
-          minlength="6"
-          #password="ngModel"
-        />
-        <div
-          class="alert alert-danger"
-          role="alert"
-          *ngIf="password.errors && f.submitted"
-        >
-          <div *ngIf="password.errors.required">Password is required</div>
-          <div *ngIf="password.errors.minlength">
-            Password must be at least 6 characters
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary btn-block">
-          Upgrade to Contributor
-        </button>
-      </div>
-      <div class="form-group">
-        <div
-          class="alert alert-danger"
-          role="alert"
-          *ngIf="f.submitted && isUpgradeFailed"
-        >
-          Upgrade failed: {{ errorMessage }}
-        </div>
-      </div>
-    </form>
+  <h1> Select a PDF File </h1>
+  <span>Selected: {{fileName}}<br>Size: {{fileSize}}</span>
 
-    <div class="alert alert-success" *ngIf="isUpgraded">
-      Upgraded. Roles you have now : {{ roles }}.
-    </div>
-  </div>
+<input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
+
+<button (click)="hiddenfileinput.click()"  class="btn btn-success">Select PDF</button>
+
+<button (click)="uploadFile()" class="btn btn-success">Process and Upload</button>
+
+<button (click)="upGrade()" class="btn btn-success">Upgrade</button>
+
+<div class="list-group">
+  <li
+  *ngFor="let upload of bigUser.uploads"
+  class="list-group-item list-group-item-action list-group-item-secondary d-flex justify-content-around"
+  [ngSwitch]="upload.result">
+    <ng-template ngSwitchCase="undefined">
+      <button type="button" class="btn btn-outline-light">Download</button>
+      <span class="badge badge-warning badge-pill">Proccessing</span>
+    </ng-template>
+  </li>
 </div>
 
+<div class="alert alert-success" *ngIf="isUpgraded">
+    Upgraded. Roles you have now : {{ roles }}.
+</div>
+
+</div>

@@ -1,4 +1,23 @@
-<div class="container">
-    <h1><span class="badge badge-secondary">{{ content.message }}</span></h1>
-</div>
+<div class="home">
+  <div class="logo">
+    <a href="#" class="navbar-brand"><span><span class="logoYellow">epi</span><span
+          class="logoWhite">Mage</span></span></a>
+  </div>
 
+  <div class="blurb">
+    <div>Methylation Age Estimation. Made Simple.</div>
+    <div><span>Processesed:</span><span class="logoYellow"> {{global.totalUploads}}</span><span>  Shared:<span class="logoYellow"> {{global.totalShared}}</span></span></div>
+  </div>
+
+  <div class="mainButtons">
+    <a href="about" class="btn btn-outline-light btn-lg" routerLink="/about">About Us</a>
+    <a href="user" class="btn btn-outline-light btn-lg" *ngIf="isLoggedIn" routerLink="/user">Analyze</a>
+    <a href="contributor" class="btn btn-outline-light btn-lg" *ngIf="showContriutorBoard"
+      routerLink="/contributor">Contribute</a>
+    <a href="https://tranquil-savannah-25756.herokuapp.com/" class="btn btn-outline-light btn-lg">Search Scholar</a>
+    <a href="/register" class="btn btn-outline-light btn-lg" routerLink="/register" *ngIf="!isLoggedIn">Sign Up</a>
+    <a href="/login" class="btn btn-outline-light btn-lg" routerLink="/login" *ngIf="!isLoggedIn">Sign In</a>
+    <a href="/profile" class="btn btn-outline-light btn-lg" routerLink="/profile" *ngIf="isLoggedIn">{{ username }}</a>
+    <a href class="btn btn-outline-light btn-lg" (click)="logout()" *ngIf="isLoggedIn">Sign Out</a>
+  </div>
+</div>

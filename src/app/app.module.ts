@@ -15,6 +15,11 @@ import { UserLandingComponent } from './components/user-landing/user-landing.com
 import { DataProviderLandingComponent } from './components/data-provider-landing/data-provider-landing.component';
 import { ContributorComponent } from './components/contributor/contributor.component';
 
+import { authInterceptorProviders } from './helpers/auth.interceptor'
+import { PapaParseModule } from 'ngx-papaparse';
+import { File } from '@ionic-native/file/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,9 +36,14 @@ import { ContributorComponent } from './components/contributor/contributor.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    PapaParseModule
   ],
-  providers: [],
+  providers: [
+    authInterceptorProviders,
+    File,
+    SocialSharing
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

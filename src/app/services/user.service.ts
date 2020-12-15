@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { stringResponse } from '../models/string-reponse';
+import { User } from '../models/User';
 
-const API_URL = 'http://glacial-eyrie-69094.herokuapp.com/epiMage/test/';
-
+//const API_URL = 'https://glacial-eyrie-69094.herokuapp.com/epiMage/test/';
+const API_URL = 'http://localhost:8080/epiMage/data/';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,5 +31,9 @@ export class UserService {
 
   getContributorBoard(): Observable<stringResponse> {
     return this.http.get<stringResponse>(API_URL + 'contributor', {responseType: 'json'});
+  }
+
+  getUser(uid:string): Observable<User> {
+    return this.http.get<User>(`${API_URL}${uid}`);
   }
 }
