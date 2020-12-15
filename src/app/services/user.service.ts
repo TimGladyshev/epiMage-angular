@@ -5,7 +5,7 @@ import { stringResponse } from '../models/string-reponse';
 import { User } from '../models/User';
 
 //const API_URL = 'https://glacial-eyrie-69094.herokuapp.com/epiMage/test/';
-const API_URL = 'http://localhost:8080/epiMage/data/';
+const API_URL = 'http://104.237.9.13:8080/epi/epiMage/data/';
 @Injectable({
   providedIn: 'root'
 })
@@ -34,6 +34,6 @@ export class UserService {
   }
 
   getUser(uid:string): Observable<User> {
-    return this.http.get<User>(`${API_URL}${uid}`);
+    return this.http.get<User>(`${API_URL}user/${uid}`);
   }
 }

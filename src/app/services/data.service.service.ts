@@ -8,9 +8,9 @@ import { stringResponse } from '../models/string-reponse';
 import { User } from '../models/User';
 import { UpLoad } from '../models/Upload';
 
-const BATCH_URL = 'http://localhost:8080/upload/';
-const UPLOAD_URL = 'http://localhost:8080/file/';
-const GLOBALS_URL = 'http://localhost:8080/stats';
+const BATCH_URL = 'http://104.237.9.13:8080/epi/upload/';
+const UPLOAD_URL = 'http://104.237.9.13:8080/epi/file/';
+const GLOBALS_URL = 'http://104.237.9.13:8080/epi/stats/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -55,7 +55,7 @@ export class DataService {
   }
 
   getGlobals(): Observable<any> {
-    return this.http.get<any>(`${GLOBALS_URL}/`);
+    return this.http.get<any>(`${GLOBALS_URL}`);
   }
 
   manageError(error: HttpErrorResponse) {

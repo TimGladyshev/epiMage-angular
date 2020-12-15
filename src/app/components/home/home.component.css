@@ -1,6 +1,6 @@
 .home {
   position: absolute;
-  background-image: url('/moritz-kindler-mGFHA_0TWnA-unsplash.jpg');
+  background-image: url('../../../assets/moritzkindler.jpg');
   background-size: cover;
   background-position: bottom right;
   font-family: 'Bebas Neue', cursive;
