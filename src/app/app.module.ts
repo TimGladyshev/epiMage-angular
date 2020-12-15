@@ -18,7 +18,8 @@ import { ContributorComponent } from './components/contributor/contributor.compo
 import { authInterceptorProviders } from './helpers/auth.interceptor'
 import { PapaParseModule } from 'ngx-papaparse';
 import { File } from '@ionic-native/file/ngx';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx'
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { ChevronButtonComponent } from './components/chevron-button/chevron-button.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx'
     AdminLandingComponent,
     UserLandingComponent,
     DataProviderLandingComponent,
-    ContributorComponent
+    ContributorComponent,
+    ChevronButtonComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,12 @@
+.chevronButton {
+  position: absolute;
+  width: 7vh;
+  height: 7vh;
+  background-color: #F5DF4D;
+}
+
+.chevronButton a i {
+  height: 100%;
+  width: 100%;
+  color: #939597;
+}

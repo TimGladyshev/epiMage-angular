@@ -11,6 +11,7 @@ import { ThisReceiver, ThrowStmt } from '@angular/compiler';
 import { Site } from 'src/app/models/Site';
 import { DataService } from 'src/app/services/data.service.service';
 import { User } from 'src/app/models/User';
+import { UpLoad } from 'src/app/models/Upload';
 
 @Component({
   selector: 'app-user-landing',
@@ -42,6 +43,7 @@ export class UserLandingComponent implements OnInit {
   completedSamples:string[] = [];
   pending!:number;
   bigUser!:User;
+  uploads!:UpLoad[];
 
   constructor(
     private userService:UserService,
@@ -53,8 +55,6 @@ export class UserLandingComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.tokenService.getUser();
-    //this.samples = new Array();
-    //this.completedSamples = new Array();
     this.pending = 0;
     this.userService.getUserBoard().subscribe(
       (data : stringResponse) => {
@@ -67,6 +67,8 @@ export class UserLandingComponent implements OnInit {
     this.userService.getUser(this.currentUser.id).subscribe(
       (data:User) => {
         this.bigUser = data;
+        this.uploads = this.bigUser.uploads;
+        this.tokenService.saveBigUser(this.bigUser);
       },
       err => {
         this.content = {message: err.error.message};
@@ -83,29 +85,6 @@ export class UserLandingComponent implements OnInit {
       }
     )
   }
-
-  /*
-  sendSamples() {
-    console.log(this.samples);
-    this.sample = this.samples[0];
-    console.log(this.sample);
-    console.log(this.samples[0]);
-
-    this.dataService.uploadSample(this.batch.batchID, this.samples.pop()).subscribe(
-      (data: string[]) => {
-        this.samples.pop();
-        this.completedSamples = data;
-        console.log(this.completedSamples);
-        if (this.samples.length != 0) {
-          this.sendSamples();
-        }
-      },
-      err => {
-        console.log("error sending samples");
-      }
-    )
-  }
-  */
 
   onFileSelect(event:any) {
     this.selectedFile = event.target.files[0];
@@ -125,7 +104,7 @@ export class UserLandingComponent implements OnInit {
   downLoadFile(fileName:string) {
     this.dataService.downloadFile(fileName).subscribe(
       (data:any) => {
-        
+
       }
     )
   }
