@@ -123,7 +123,7 @@ export class UserLandingComponent implements OnInit {
   }
 
   downLoadFile(fileName:string) {
-    if (this.dataService.downloadFile(fileName)).subscribe(
+    this.dataService.downloadFile(fileName).subscribe(
       (data:any) => {
         
       }
