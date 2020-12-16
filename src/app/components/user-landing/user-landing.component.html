@@ -1,32 +1,87 @@
-<div class="container">
+<div class="userLanding">
+  <br>
+  <div class="container">
+    <div class="backButton">
+      <app-chevron-button></app-chevron-button>
+    </div>
+    <div class="alert alert-success" *ngIf="isUpgraded">
+      You have become a contributer. Thank you. Please sign in agin to activate.
+    </div>
+    <br>
+    <div class="row jumbotron headerSection">
+      <div class="col sm-8">
 
-  <button type="button">app-chevron-button</button>
+          <h3 class="yellow">Upload a CSV</h3>
+          <p>
+            samples as columns, cpg sites as rows.
+            currently support 25k and 450k data.
+            please do not upload more than 20 samples in one file.
+            samples are BMIQ normalized and fit to gold standerd probes.
+            results can take hours to process depending on server load, and upload size.<br>
+            Starts on upload, check back here for <span class="yellow">Result.</span>
+          </p>
+          <span><span class="text-info">Selected:</span> {{fileName}}<br><span class="text-info">Size:</span> {{fileSize}}</span>
 
-  <h1> Select a PDF File </h1>
-  <span>Selected: {{fileName}}<br>Size: {{fileSize}}</span>
+          <div>
+            <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput><br>
+          </div>
 
-<input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
+          <button (click)="hiddenfileinput.click()" class="btn btn-info">Select CSV</button>
 
-<button (click)="hiddenfileinput.click()"  class="btn btn-success">Select PDF</button>
+          <span class="material-icons">&nbsp;&nbsp;chevron_right&nbsp;&nbsp;</span>
 
-<button (click)="uploadFile()" class="btn btn-success">Process and Upload</button>
+          <button (click)="uploadFile()" class="btn btn-info">Process and Upload</button>
+      </div>
 
-<button (click)="upGrade()" class="btn btn-success">Upgrade</button>
+      <div class="col-sm-4">
 
-<div class="list-group">
-  <li
-  *ngFor="let upload of bigUser.uploads"
-  class="list-group-item list-group-item-action list-group-item-secondary d-flex justify-content-around"
-  [ngSwitch]="upload.result">
-    <ng-template ngSwitchCase="undefined">
-      <button type="button" class="btn btn-outline-light">Download</button>
-      <span class="badge badge-warning badge-pill">Proccessing</span>
-    </ng-template>
-  </li>
-</div>
+          <h3 class="yellow">Upgrade to Contributor</h3>
+          <p>
+            Allow others to benifet from your data!
+            Gain ability to select which of your files to share.
+          </p>
+          <button (click)="upGrade()" class="btn btn-success">Upgrade</button>
 
-<div class="alert alert-success" *ngIf="isUpgraded">
-    Upgraded. Roles you have now : {{ roles }}.
-</div>
+      </div>
+    </div>
 
+
+    <div class="list-group">
+      <li *ngFor="let upload of bigUser.uploads.reverse()"
+        class="list-group-item list-group-item-action list-group-item-secondary d-flex justify-content-around"
+        [ngSwitch]="upload.completed">
+
+        <ng-template ngSwitchDefault>
+          <div class="col-sm-6">
+            <h6>Name: {{upload.name}}</h6>
+            <h6>Sample: {{upload.sample}}</h6>
+            <h6>Result: {{upload.result}}</h6>
+          </div>
+          <div class="col-sm-2">
+            <button type="button" class="btn btn-outline-dark" (click)="downLoadFile(upload.sample)">Get Sample</button>
+          </div>
+          <div class="col-sm-2" *ngIf="upload.result">
+            <button type="button" class="btn btn-outline-dark" (click)="downLoadFile(upload.result)">Get Result</button>
+          </div>
+          <div class="col-sm-2" *ngIf="!upload.result">
+            <button type="button" class="btn btn-outline-dark" (click)="downLoadFile(upload.result)" disabled>Get Result</button>
+          </div>
+          <div class="col-sm-1" *ngIf="!upload.result">
+            <span class="badge badge-pill badge-warning"><span class="material-icons">access_time</span></span>
+          </div>
+          <div class="col-sm-1" *ngIf="upload.result==='failed'">
+            <span class="badge badge-danger"><span class="material-icons">close</span></span>
+          </div>
+          <div class="col-sm-1" *ngIf="upload.result && upload.result!=='failed'">
+            <span class="badge badge-success"><span class="material-icons">check</span></span>
+          </div>
+          <div class="col-sm-1">
+            <button type="button" class="badge badge-danger badge-pill"><span class="material-icons" (click)="delete(upload.id)">delete_forever</span></button>
+          </div>
+        </ng-template>
+
+      </li>
+    </div>
+
+  </div>
 </div>

@@ -12,6 +12,11 @@ import { Site } from 'src/app/models/Site';
 import { DataService } from 'src/app/services/data.service.service';
 import { User } from 'src/app/models/User';
 import { UpLoad } from 'src/app/models/Upload';
+import { Observable } from 'rxjs';
+
+
+declare var require: any
+const FileSaver = require('file-saver');
 
 @Component({
   selector: 'app-user-landing',
@@ -50,7 +55,7 @@ export class UserLandingComponent implements OnInit {
     private authService:AuthService,
     private tokenService:TokenService,
     private dataService:DataService,
-    private papa:Papa
+    private papa:Papa,
     ) { }
 
   ngOnInit(): void {
@@ -68,12 +73,17 @@ export class UserLandingComponent implements OnInit {
       (data:User) => {
         this.bigUser = data;
         this.uploads = this.bigUser.uploads;
+        console.log(this.uploads);
         this.tokenService.saveBigUser(this.bigUser);
       },
       err => {
         this.content = {message: err.error.message};
       }
     )
+  }
+
+  getDate(ms:bigint) {
+    return new Date(ms.toString()).toDateString();
   }
 
   sendCSV() {
@@ -103,8 +113,10 @@ export class UserLandingComponent implements OnInit {
 
   downLoadFile(fileName:string) {
     this.dataService.downloadFile(fileName).subscribe(
-      (data:any) => {
-
+      (response:any) => {
+        let blob:any = new Blob([response], { type: 'text/csv; charset=utf-8' });
+			  const url = window.URL.createObjectURL(blob);
+        FileSaver.saveAs(blob, `${fileName}`);
       }
     )
   }
@@ -132,7 +144,6 @@ export class UserLandingComponent implements OnInit {
         this.res = data;
         this.isUpgraded = true;
         this.isUpgradeFailed = false;
-        this.reloadPage();
       },
       err => {
         this.isUpgraded = false;
@@ -141,6 +152,22 @@ export class UserLandingComponent implements OnInit {
       }
     );
   }
+
+  delete(uploadId:string) {
+    this.dataService.deleteUpload(this.bigUser.id, uploadId).subscribe(
+      (data:User) => {
+        this.bigUser = data;
+        this.uploads = data.uploads;
+        this.tokenService.saveBigUser(data);
+        //this.reloadPage();
+      },
+      err => {
+        console.log("error deleting");
+      }
+    )
+  }
+
+
 
   reloadPage(): void {
     window.location.reload();

@@ -1,3 +1,66 @@
-<div class="container">
-  <h1><span class="badge badge-secondary">Contributer Landing</span></h1>
+<div class="contLand">
+  <br>
+  <div class="container">
+    <div class="backButton">
+      <app-chevron-button></app-chevron-button>
+    </div>
+    <br>
+    <div class="row jumbotron headerSection">
+      <div class="col sm-8">
+
+          <h3 class="yellow">Contribute</h3>
+          <p>
+            Thankyou for becoming a contributor. Please annotate samples
+            before submitting. Click annotate, and upload
+            a text file with thurough description. All files are private until
+            you decide to <span class="yellow">Share</span>
+          </p>
+      </div>
+    </div>
+
+    <div class="list-group">
+      <li *ngFor="let upload of bigUser.uploads.reverse()"
+        class="list-group-item list-group-item-action list-group-item-secondary d-flex justify-content-around"
+        [ngSwitch]="upload">
+
+        <ng-template ngSwitch="">
+
+        </ng-template>
+
+        <ng-template ngSwitchDefault>
+          <div>
+            <input style="display: none" type="file" (change)="onFileSelectA($event);annotate(upload)" #hiddenfileinputA><br>
+          </div>
+
+          <div class="col-sm-6">
+            <h6>Name: {{upload.name}}</h6>
+            <h6>Sample: {{upload.sample}}</h6>
+            <h6>Result: {{upload.result}}</h6>
+          </div>
+          <div class="col-sm-2">
+            <button type="button" class="btn btn-outline-dark" (click)="hiddenfileinputA.click()">Annotate</button>
+          </div>
+          <div class="col-sm-2" *ngIf="upload.annotation">
+            <button type="button" class="btn btn-outline-dark" (click)="share(upload.id)">Share</button>
+          </div>
+          <div class="col-sm-2" *ngIf="!upload.annotation">
+            <button type="button" class="btn btn-outline-dark" (click)="share(upload.id)" disabled>Share</button>
+          </div>
+
+          <div class="col-sm-1" *ngIf="!upload.annotation">
+            <span class="material-icons">folder</span>
+          </div>
+          <div class="col-sm-1" *ngIf="upload.annotation && !upload.contributing">
+            <span class="material-icons">perm_media</span>
+          </div>
+          <div class="col-sm-1" *ngIf="upload.annotation && upload.contributing">
+            <span class="material-icons">folder_shared</span>
+          </div>
+
+        </ng-template>
+
+      </li>
+    </div>
+
+  </div>
 </div>

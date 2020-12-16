@@ -1,0 +1,24 @@
+.userLanding {
+  position: absolute;
+  min-height: 100%;
+  height: max-content;
+  width: 100%;
+  background-image: url('../../../assets/shapelined.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: bottom left;
+  font-family: 'Bebas Neue', cursive;
+}
+
+.backButton {
+  position: relative;
+  top: 1 rem;
+}
+
+.yellow {
+  color: #F5DF4D;
+}
+
+.jumbotron {
+  background-color: darkgrey;
+}

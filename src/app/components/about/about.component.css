@@ -1,18 +1,14 @@
-.contLand {
+.about {
   position: absolute;
   min-height: 100%;
   height: max-content;
   width: 100%;
-  background-image: url('../../../assets/shapelined.jpg');
+  background-image: url('../../../assets/mitchellensink.jpg');
   background-attachment: fixed;
   background-size: cover;
-  background-position: bottom left;
+  background-repeat: no-repeat;
+  background-position: center;
   font-family: 'Bebas Neue', cursive;
-}
-
-.backButton {
-  position: relative;
-  top: 1 rem;
 }
 
 .yellow {

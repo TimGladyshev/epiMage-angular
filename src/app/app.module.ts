@@ -20,6 +20,7 @@ import { PapaParseModule } from 'ngx-papaparse';
 import { File } from '@ionic-native/file/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { ChevronButtonComponent } from './components/chevron-button/chevron-button.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -32,14 +33,15 @@ import { ChevronButtonComponent } from './components/chevron-button/chevron-butt
     UserLandingComponent,
     DataProviderLandingComponent,
     ContributorComponent,
-    ChevronButtonComponent
+    ChevronButtonComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    PapaParseModule
+    PapaParseModule,
   ],
   providers: [
     authInterceptorProviders,

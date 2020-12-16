@@ -1,7 +1,12 @@
-<div class="col-md-12">
-  <div class="card card-container">
-    <h3>Sign In</h3>
+<div class="col-md-12 register">
+  <div class="container">
+    <div class="backButton">
+      <app-chevron-button></app-chevron-button>
+    </div>
+    <br>
+    <h3>Sign Up</h3>
     <form
+      class="jumbotron"
       *ngIf="!isSuccessful"
       name="form"
       (ngSubmit)="f.form.valid && onSubmit()"

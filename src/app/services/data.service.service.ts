@@ -46,12 +46,28 @@ export class DataService {
     )
   }
 
+  annotate(upploadId:string, file:File): Observable<any> {
+    var formData: any = new FormData();
+    formData.append("file", file);
+    return this.http.post<any>(`${UPLOAD_URL}${upploadId}/annotate`, formData, {
+      reportProgress: true,
+      observe: 'events'
+    }).pipe(
+      catchError(this.manageError)
+    )
+  }
+
   shareUpload(uploadId:string): Observable<any> {
     return this.http.post<any>(`${BATCH_URL}${uploadId}/share`, httpOptions);
   }
 
+
   downloadFile(fileName:string): Observable<any> {
 		return this.http.get(`${UPLOAD_URL}${fileName}/download`, {responseType: 'blob'});
+  }
+
+  deleteUpload(userId:string, uploadId:string): Observable<any> {
+    return this.http.delete(`${UPLOAD_URL}${userId}/${uploadId}/delete`, httpOptions);
   }
 
   getGlobals(): Observable<any> {

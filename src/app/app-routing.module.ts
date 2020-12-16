@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AboutComponent } from './components/about/about.component';
 import { AdminLandingComponent } from './components/admin-landing/admin-landing.component';
 import { ContributorComponent } from './components/contributor/contributor.component';
 import { HomeComponent } from './components/home/home.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'user', component: UserLandingComponent },
   { path: 'admin', component: AdminLandingComponent },
   { path: 'contributor', component: ContributorComponent },
+  { path: 'about', component: AboutComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home'}
 ];
